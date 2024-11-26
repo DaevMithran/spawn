@@ -27,6 +27,12 @@ func (cfg *NewChainConfig) GitInitNewProjectRepo() {
 	if err := ExecCommand("git", "add", "."); err != nil {
 		cfg.Logger.Error("Error adding files to git", "err", err)
 	}
+	if err := ExecCommand("git", "config", "--global", "user.email", "reecepbcups@gmail.com"); err != nil {
+		cfg.Logger.Error("Error setting config", "err", err)
+	}
+	if err := ExecCommand("git", "config", "--global", "user.name", "Reece Williams"); err != nil {
+		cfg.Logger.Error("Error committing initial files", "err", err)
+	}
 	if err := ExecCommand("git", "commit", "-m", "initial commit", "--quiet"); err != nil {
 		cfg.Logger.Error("Error committing initial files", "err", err)
 	}

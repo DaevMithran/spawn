@@ -47,7 +47,7 @@ func applyPluginCmds() {
 		PluginsCmd.AddCommand(execCmd)
 	}
 
-	rootCmd.AddCommand(PluginsCmd)
+	// rootCmd.AddCommand(PluginsCmd)
 }
 
 // returns name and path
@@ -67,7 +67,8 @@ func loadPlugins() map[string]string {
 	if _, err := d.Open("."); err != nil {
 		if os.IsNotExist(err) {
 			if err := os.MkdirAll(pluginsDir, 0755); err != nil {
-				panic(err)
+				fmt.Println("Can't create dir here, just continuining.", err) // can't created but continuing (no panic)
+				return p
 			}
 		} else {
 			panic(err)
